@@ -1,0 +1,29 @@
+<!--
+MODIFIED FROM ORIGINAL liwenyip/hugo-easy-gallery
+NB this overrides Hugo's built-in "figure" shortcode but is backwards compatible
+Documentation and licence at https://github.com/liwenyip/hugo-easy-gallery/
+-->
+<!-- count how many times we've called this shortcode; load the css if it's the first time -->
+{{- if not (.indexScratch.Get "figurecount") }}<link rel="stylesheet" href={{ "css/hugo-easy-gallery.css" | relURL }} />{{ end }}
+{{- .indexScratch.Add "figurecount" 1 -}}
+<!-- use either src or link-thumb for thumbnail image -->
+{{- $thumb := .src | default (printf "%s." (.thumb) | replace (.link) ".") }}
+<div class="box{{ with .captionPosition }} fancy-figure caption-position-{{.}}{{end}}{{ with .captionEffect }} caption-effect-{{.}}{{end}}" {{ with .width }}style="max-width:{{.}}"{{end}}>
+  <figure {{ with .class }}class="{{.}}"{{ end }} itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img" style="background-image: url('{{ $thumb | relURL }}');"{{ with .size }} data-size="{{.}}"{{ end }}>
+      <img itemprop="thumbnail" src="{{ $thumb | relURL }}" {{ with .alt | default (.caption) }}alt="{{.}}"{{ end }}/><!-- <img> hidden if in .gallery -->
+    </div>
+    {{ with .link | default (.src) }}<a href="{{ . | relURL }}" itemprop="contentUrl"></a>{{ end }}
+    {{- if or (or (.title) (.caption)) (.attr)}}
+      <figcaption>
+        {{- with .title }}<h4>{{.}}</h4>{{ end }}
+        {{- if or (.caption) (.attr)}}
+          <p>
+            {{- .caption -}}
+            {{- with .attrlink}}<a href="{{.}}">{{ .attr }}</a>{{ else }}{{ .attr}}{{ end -}}
+          </p>
+        {{- end }}
+      </figcaption>
+    {{- end }}
+  </figure>
+</div>

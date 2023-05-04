@@ -1,0 +1,10 @@
+name = "house-lookup-hugo-theme"
+license = "MIT"
+
+[original]
+  author = "morph"
+  homepage = "morph.sh"
+  repo = "https://github.com/colorchestra/smol"
+  author = "Vimux"
+  homepage = "https://github.com/Vimux"
+  repo = "https://github.com/Vimux/blank"
