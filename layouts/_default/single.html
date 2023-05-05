@@ -21,7 +21,7 @@
 			{{ $indexScratch := .Scratch }}
 			{{ partial "load-photoswipe.html" . }}
 
-			<div class="gallery caption-position-bottom caption-effect-slide hover-effect-zoom" itemscope itemtype="http://schema.org/ImageGallery">
+			<div class="gallery caption-position-bottom caption-effect-slide hover-effect-none" itemscope itemtype="http://schema.org/ImageGallery">
 				{{ range .Params.house.images }}
 					{{ partial "figure.html" (dict "src" . "indexScratch" $indexScratch) }}
 				{{ end }}

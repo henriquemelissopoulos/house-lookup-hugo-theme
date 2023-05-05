@@ -14,7 +14,7 @@ Grid Layout Styles
 */
 .gallery {
     overflow: hidden;
-    margin: 1rem;
+    /* margin: 1rem; */
     /* max-width: 768px; */
 }
 .gallery .box {
@@ -73,10 +73,10 @@ figure {
 }
 .gallery figure {
     position: absolute;
-    left: .3rem;
-    right: .3rem;
-    top: .3rem;
-    bottom: .3rem;
+    left: .1rem;
+    right: .1rem;
+    top: .1rem;
+    bottom: .1rem;
 }
 .gallery.hover-effect-grow figure:hover {
     transform: scale(1.05);
