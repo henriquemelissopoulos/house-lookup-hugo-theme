@@ -2,20 +2,20 @@
 	<main>
 		<article>
 			<h1>{{ .Title }}</h1>
-			<time>{{ .Date.Format (default "2006-01-02 15:04:05" .Site.Params.dateFmt) }}</time> . <a href="{{ .Params.house.url }}">{{ .Params.house.providerId }} - {{ .Params.house.externalId }}</a>
+			<time>{{ .Date.Format (default "2006-01-02 15:04:05" .Site.Params.dateFmt) }}</time> • <a href="{{ .Params.house.url }}">{{ .Params.house.providerId }} - {{ .Params.house.externalId }}</a>
 
-			<h2>Valores</h2>
-			<div>Aluguel: {{ .Params.house.rentCompletePrice }}</div>
-			<div>Venda: {{ .Params.house.salePrice }}</div>
 
-			<h2>Endereço</h2>
-			<div>{{ .Params.house.type }} • {{ .Params.house.area }}m² </div>
-			<div>{{ .Params.house.street }}, {{ .Params.house.number }}</div>
-			<div>{{ .Params.house.city }} • {{ .Params.house.neighbourhood }}</div>
-			<div>{{ .Params.house.latitude }}, {{ .Params.house.longitude }}</div>
+			{{/*  <h2>Endereço</h2>  */}}
+			{{/*  <div>{{ .Params.house.type }} • {{ .Params.house.area }}m² </div>  */}}
+			</br></br>
+			<div><b>{{ .Params.house.street }}, {{ .Params.house.number }}</b> • {{ .Params.house.city }} • {{ .Params.house.neighbourhood }}</div>
+			{{/*  <div>{{ .Params.house.latitude }}, {{ .Params.house.longitude }}</div>  */}}
+			{{ partial "map.html" (dict "latitude" .Params.house.latitude "longitude" .Params.house.longitude "zoom" "18") }}
 			
 			<h2>Descrição</h2>
 			<div>{{ .Params.house.bedrooms }} Quartos • {{ .Params.house.bathrooms }} Banheiros • {{ .Params.house.parkingSpaces }} Vagas</div>
+			<div>Aluguel: {{ .Params.house.rentCompletePrice }}</div>
+			<div>Venda: {{ .Params.house.salePrice }}</div>
 
 			<h2>Imagens</h2>
 			{{ $indexScratch := .Scratch }}

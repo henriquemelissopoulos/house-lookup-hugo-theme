@@ -111,3 +111,7 @@ figcaption {
 figure {
   margin: auto;
 }
+
+#map { 
+  height: 400px;
+}
