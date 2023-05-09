@@ -17,7 +17,7 @@ Grid Layout Styles
     /* margin: 1rem; */
     /* max-width: 768px; */
 }
-.gallery .box {
+.gallery .box-gallery {
     float: left;
     position: relative;
     /* Default: 1 tile wide */
@@ -28,14 +28,14 @@ Grid Layout Styles
 }
 @media only screen and (min-width : 365px) {
     /* Tablet view: 2 tiles */
-    .gallery .box {
+    .gallery .box-gallery {
         width: 50%;
         padding-bottom: 50%;
     }
 }
 @media only screen and (min-width : 480px) {
     /* Small desktop / ipad view: 3 tiles */
-    .gallery .box {
+    .gallery .box-gallery {
         /* width: 33.3%; */
         /* padding-bottom: 33.3%; */
         width: 33.3%;
@@ -44,7 +44,7 @@ Grid Layout Styles
 }
 @media only screen and (min-width : 9999px) {
    /* Medium desktop: 4 tiles */
-   .box {
+   .box-gallery {
       width: 25%;
       padding-bottom: 25%;
    }
