@@ -1,8 +1,19 @@
 @import "bulma-0.9.4/bulma/css/bulma.css";
 
-#map { 
-  /* height: 400px; */
-  min-height: 200px;
+.map {
+  padding: 6rem 1.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .map {
+    padding: 3rem 3rem;
+  }
+  .map.is-medium {
+    padding: 10rem 4.5rem;
+  }
+  .map.is-large {
+    padding: 18rem 6rem;
+  }
 }
 
 

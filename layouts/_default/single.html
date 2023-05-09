@@ -2,33 +2,34 @@
 	<main>
 		<section class="section">
 			<div class="container">
-				<div class="level mb-6">
+				<div class="level">
 					<div class="level-left">
 						<div class="block">
 							<h1 class="title">{{ .Title }} com {{ .Params.house.bedrooms }} quartos, {{ .Params.house.bathrooms }} banheiros e {{ .Params.house.parkingSpaces }} vagas</h1>
-							{{/*  <p class="subtitle">{{ .Params.house.city }} • {{ .Params.house.neighbourhood }}</p>  */}}
 						</div>
 					</div>
 					<div class="level-right">
-						{{/*  <div class="subtitle is-7">{{ .Date.Format (default "2006-01-02 15:04:05" .Site.Params.dateFmt) }}  */}}
 						<span class="tag is-info is-light">
 							<a href="{{ .Params.house.url }}">{{ .Params.house.providerName }} • {{ .Date.Format (default "2006-01-02 15:04:05" .Site.Params.dateFmt) }}</a>
 						</span>
-					{{/*  </div>  */}}
 					</div>
 				</div>
+			</div>
+		</section>
 
-				<div class="block">
-					<div class="block">
-						<p class="title is-5">{{ .Params.house.street }}, {{ .Params.house.number }}</p>
-						<p class="subtitle is-6">{{ .Params.house.city }} • {{ .Params.house.neighbourhood }}</p>
-					</div>
-					<div id="map" class="section is-medium">{{ partial "map.html" (dict "latitude" .Params.house.latitude "longitude" .Params.house.longitude "zoom" "18") }}</div>
-				</div>
+		<section class="section">
+			<div class="container">
+				<p class="title is-5">{{ .Params.house.street }}, {{ .Params.house.number }}</p>
+				<p class="subtitle is-6">{{ .Params.house.city }} • {{ .Params.house.neighbourhood }}</p>
+				{{ partial "map.html" (dict "latitude" .Params.house.latitude "longitude" .Params.house.longitude "zoom" "18") }}
+			</div>
+		</section>
 
-				<h2 class="title mt-6">Descrição</h2>
+		<section class="section">
+			<div class="container">
+				<h2 class="title">Descrição</h2>
 				<div class="columns is-variable is-8">
-					<div class="column is-four-fifths">
+					<div class="column is-tree-quarters">
 						<div class="columns is-multiline is-variable is-8">
 							{{ range .Params.house.properties }}
 								<div class="column is-one-third">
@@ -40,8 +41,7 @@
 							{{ end }}
 						</div>
 					</div>
-
-					<div class="column is-one-fifth">
+					<div class="column is-one-quarter">
 						<div class="box">
 							<p class="heading">Aluguel Total:</p>
 							<p class="title">{{ .Params.house.rentCompletePriceFmt }}</p>
@@ -49,15 +49,17 @@
 							<p class="title">{{ .Params.house.salePriceFmt }}</p>
 							<p><span class="heading">IPTU: <b>{{ .Params.house.iptuPriceFmt }}</b></span></p>
 							<p><span class="heading">Condomínio: <b>{{ .Params.house.condominiumPriceFmt }}</b></span></p>
-							{{/*  <p class="heading">Condomínio:</p><p>{{ .Params.house.salePriceFmt }}</p>  */}}
 						</div>
 					</div>
 				</div>
+			</div>
+		</section>
 
-				<h2>Imagens</h2>
+		<section class="section">
+			<div class="container">
+				<h2 class="title">Imagens</h2>
 				{{ $indexScratch := .Scratch }}
 				{{ partial "load-photoswipe.html" . }}
-
 				<div class="gallery caption-position-bottom caption-effect-slide hover-effect-none" itemscope itemtype="http://schema.org/ImageGallery">
 					{{ range .Params.house.images }}
 						{{ partial "figure.html" (dict "src" . "indexScratch" $indexScratch) }}
