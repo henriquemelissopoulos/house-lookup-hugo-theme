@@ -1,3 +1,14 @@
+@import "bulma-0.9.4/bulma/css/bulma.css";
+
+#map { 
+  /* height: 400px; */
+  min-height: 200px;
+}
+
+
+/* OLD:
+
+
 html {
   overflow-y: scroll;
 }
@@ -114,4 +125,4 @@ figure {
 
 #map { 
   height: 400px;
-}
+} */
