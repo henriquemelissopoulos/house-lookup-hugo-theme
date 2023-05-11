@@ -1,36 +1,33 @@
 {{ define "main" }}
 	<main>
-		<section style="position: relative;">
-
-			{{ partial "map.html" (dict "latitude" .Params.house.latitude "longitude" .Params.house.longitude "zoom" "14" "mapTileLayerURL" $.Site.Params.mapTileLayerURL) }}
-
-			<section class="section pb-5" style="
-				position: absolute;
-				bottom: 0px;
-				right: 0px;
-				width: 100%;
-				z-index: 6660;
-				pointer-events:none;
-			">
-				<div class="container" style="pointer-events:auto;">
-					<div class="box is-pulled-right" style="border: 1px solid #dbdbdb">
-						<p class="title is-6" >{{ .Params.house.street }}, {{ .Params.house.number }}</p>
-						<p class="subtitle is-7">{{ .Params.house.city }}, {{ .Params.house.neighbourhood }}</p>
+		<section class="section pb-0">
+			<div class="container">
+				<div class="level">
+					<div class="level-left">
+						<div class="block">
+							<h1 class="title">{{ .Title }} com {{ .Params.house.bedrooms }} quartos, {{ .Params.house.bathrooms }} banheiros e {{ .Params.house.parkingSpaces }} vagas</h1>
+						</div>
+					</div>
+					<div class="level-right">
+						<span class="tag is-info is-light">
+							<a href="{{ .Params.house.url }}">{{ .Params.house.providerName }} • {{ .Date.Format (default "2006-01-02 15:04:05" .Site.Params.dateFmt) }}</a>
+						</span>
 					</div>
 				</div>
-			</section>
+			</div>
 		</section>
 
-		<section class="section pb-3">
+		<section class="section pb-0">
 			<div class="container">
-				<p class="title is-4">{{ .Title }} com {{ .Params.house.bedrooms }} quartos, {{ .Params.house.bathrooms }} banheiros e {{ .Params.house.parkingSpaces }} vagas</p>
-				<p class="subtitle is-7 pt-1">{{ .Date.Format (default "2006-01-02" .Site.Params.dateFmt) }} • <a href="{{ .Params.house.url }}">{{ .Params.house.providerName }}</a></p>
+				<p class="title is-5">{{ .Params.house.street }}, {{ .Params.house.number }}</p>
+				<p class="subtitle is-6">{{ .Params.house.city }} • {{ .Params.house.neighbourhood }}</p>
+				{{ partial "map.html" (dict "latitude" .Params.house.latitude "longitude" .Params.house.longitude "zoom" "18") }}
 			</div>
 		</section>
 
 		<section class="section mb-6">
 			<div class="container">
-				<h2 class="title is-5">Descrição</h2>
+				<h2 class="title">Descrição</h2>
 				<div class="columns is-variable is-8">
 					<div class="column is-tree-quarters">
 						<div class="columns is-multiline is-variable is-8">
@@ -45,11 +42,11 @@
 						</div>
 					</div>
 					<div class="column is-one-quarter">
-						<div class="box" style="border: 1px solid #dbdbdb;">
+						<div class="box">
 							<p class="heading">Aluguel Total:</p>
-							<p class="title is-5">{{ .Params.house.rentCompletePriceFmt }}</p>
+							<p class="title">{{ .Params.house.rentCompletePriceFmt }}</p>
 							<p class="heading">Venda:</p>
-							<p class="title is-5">{{ .Params.house.salePriceFmt }}</p>
+							<p class="title">{{ .Params.house.salePriceFmt }}</p>
 							<p><span class="heading">IPTU: <b>{{ .Params.house.iptuPriceFmt }}</b></span></p>
 							<p><span class="heading">Condomínio: <b>{{ .Params.house.condominiumPriceFmt }}</b></span></p>
 						</div>

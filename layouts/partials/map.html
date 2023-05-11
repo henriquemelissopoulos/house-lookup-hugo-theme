@@ -11,28 +11,53 @@
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
     {{/*  Leaflet Fullscreen  */}}
 
+    {{/*  Leaflet doubletapdragzoom  */}}
+    <script src="https://unpkg.com/leaflet-doubletapdrag"></script>
+    <script src="https://unpkg.com/leaflet-doubletapdragzoom"></script>
+    {{/*  Leaflet doubletapdragzoom  */}}
+
     <script>
         var latlong = [{{- .latitude -}}, {{- .longitude -}}];
 
-        var map = L.map('map').setView(latlong, 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var map = L.map('map').setView(latlong, {{ .zoom }});
+
+        L.tileLayer({{ .mapTileLayerURL }}, {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        // Config
         var marker = L.marker(latlong).addTo(map);
+        map.dragging.disable();
+        map.scrollWheelZoom.disable();
+        map.zoomControl.remove();
 
-        map.addControl(new L.Control.Fullscreen());
-        map.dragging.disable()
-        map.scrollWheelZoom.disable()
+
+        // Double Tap Drag Zoom
+        map.doubleTapDragZoom.enable();
+        L.Util.setOptions(map, {
+            doubleTapDragZoom: 'center',
+            doubleTapDragZoomOptions: {
+              reverse: true,
+            },
+        });
+
+
+        // Behaviour
+        map.on('click', function(ev) {
+            if (!map.isFullscreen()) {
+                map.toggleFullscreen();
+            }
+        });
 
         map.on('fullscreenchange', function () {
             if (map.isFullscreen()) {
-                map.dragging.enable()
-                map.scrollWheelZoom.enable()
+                map.dragging.enable();
+                map.scrollWheelZoom.enable();
             } else {
-                map.dragging.disable()
-                map.scrollWheelZoom.disable()
+                map.dragging.disable();
+                map.scrollWheelZoom.disable();
+                map.setView(latlong, {{ .zoom }});
             }
         });
 
@@ -55,6 +80,6 @@
         map.on('locationerror', onLocationError);
         map.on('locationfound', onLocationFound);
 
-        map.locate()
+        map.locate();
     </script>
 </div>
